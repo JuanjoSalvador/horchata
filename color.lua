@@ -1,0 +1,22 @@
+local Color = {}
+
+-- Como parámetro acepta números entre 0 y 255
+-- y devuelve el valor relativo entre 0 y 1
+-- (Love2D 11.0)
+
+function toDecimal (number)
+    return number/255
+end
+
+-- @param rgb: tabla con tres valores RGB
+function Color:RGBtoLove(rgb)
+    colorTable = {}
+
+    for i in pairs(rgb) do
+        table.insert(colorTable, toDecimal(rgb[i]))
+    end
+
+    return colorTable
+end
+
+return Color
