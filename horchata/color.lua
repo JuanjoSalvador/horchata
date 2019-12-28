@@ -19,14 +19,14 @@ function Color:RGBtoLove(rgb)
             table.insert(colorTable, toDecimal(rgb[i]))
         end
     end
-    
+
     return colorTable
 end
 
 function Color:randomColor()
     local colorSet = {}
 
-    for i = 1, 3, 1 do 
+    for i = 1, 3, 1 do
         table.insert(colorSet, math.random(0, 255))
     end
 
