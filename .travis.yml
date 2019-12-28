@@ -15,7 +15,7 @@ install:
   - luarocks install luacov-coveralls
 
 script:
-  - luacheck .
+  - luacheck horchata 
 
 after_success:
   - luacov-coveralls -e $TRAVIS_BUILD_DIR/lua_install
