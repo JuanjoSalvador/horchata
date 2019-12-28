@@ -5,7 +5,7 @@ env:
   - LUA="lua=5.1"
 
 before_install:
-  - pip install --user hererocks
+  - pip install hererocks
   - hererocks lua_install -r^ --$LUA
   - export PATH=$PATH:$PWD/lua_install/bin
 
