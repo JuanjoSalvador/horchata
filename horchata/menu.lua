@@ -1,16 +1,13 @@
 local Menu = {}
 
+local Color = require "lib.horchata.color"
+
 local entries = {}
 local screenwidth, screenheight, percent_x, percent_y, color
 
--- local resolution = "1920 X 1080"
--- local resolution_available = {"1280 X 720", "1366 X 766", "1920 X 1080"}
--- local selected_res = 3
-
--- local fullscreen = true
-
-
-
+--- Creates a new Menu
+-- @param gmst The Menu gamestate (example: "main_menu")
+-- @param clr The default color for the menu entries (optional)
 function Menu:new(gmst, clr)
     if clr == nil then
         clr = {81, 185, 141} -- default color
@@ -22,9 +19,10 @@ function Menu:new(gmst, clr)
     percent_y = screenheight / 100
 
     color = Color:RGBtoLove(clr)
-    Menu.gamestate = gmst
+    self.gamestate = gmst
 end
 
+--- Updates the Menu object
 function Menu:update()
     for k, v in pairs(entries) do
         local over = false
@@ -43,6 +41,7 @@ function Menu:update()
     end
 end
 
+--- Updates the Menu object's label (internal use)
 function Menu:updateLabel(action, label)
     for k, v in pairs(entries) do
         print(v.action, v.label)
@@ -52,13 +51,10 @@ function Menu:updateLabel(action, label)
     end
 end
 
+--- Draw the Menu
 function Menu:draw()
     local oldFont = love.graphics.getFont()
     local r,g,b,a = love.graphics.getColor()
-
-    --love.graphics.print("OPTIONS", button.x * percent_x, 10 * percent_y)
-
-    --love.graphics.print("SCREEN RESOLUTION", button.x * percent_x, 25 * percent_y)
     for k, v in pairs(entries) do
 
         if v.over and v.clickable then
@@ -74,6 +70,14 @@ function Menu:draw()
     love.graphics.setColor(r,g,b,a)
 end
 
+--- Add a new Entry to the Menu
+-- @param x number The X position of the entry
+-- @param y number The Y position of the entry
+-- @param w number The width of the entry
+-- @param x number The height of the entry
+-- @param x bool An Entry object could be clickable or not
+-- @param onClick string Action to launch when you click this (default nil)
+-- @param text string The Entry label
 function Menu:addEntry(x, y, w, h, clickable, onClick, text)
     local entry = {
         x = x,
@@ -89,8 +93,8 @@ function Menu:addEntry(x, y, w, h, clickable, onClick, text)
     table.insert(entries, entry)
 end
 
+--- Mouse click event listener
 function love.mousereleased(x, y, m_button)
-    print(gamestate)
     if m_button == 1 then
         for k, v in pairs(entries) do
             if v.over and v.clickable and gamestate == Menu.gamestate then
@@ -99,6 +103,5 @@ function love.mousereleased(x, y, m_button)
         end
     end
 end
-
 
 return Menu
