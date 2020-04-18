@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/JuanjoSalvador/horchata.svg?branch=dev)](https://travis-ci.org/JuanjoSalvador/horchata)
+
 # horchata
 A bunch of micromodules made to make easier Lua game development
 

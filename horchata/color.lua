@@ -10,10 +10,14 @@ end
 
 -- @param rgb: tabla con tres valores RGB
 function Color:RGBtoLove(rgb)
-    colorTable = {}
+    colorTable = nil
 
-    for i in pairs(rgb) do
-        table.insert(colorTable, toDecimal(rgb[i]))
+    if rgb ~= nil then
+        colorTable = {}
+
+        for i in pairs(rgb) do
+            table.insert(colorTable, toDecimal(rgb[i]))
+        end
     end
 
     return colorTable
@@ -22,7 +26,7 @@ end
 function Color:randomColor()
     local colorSet = {}
 
-    for i = 1, 3, 1 do 
+    for i = 1, 3, 1 do
         table.insert(colorSet, math.random(0, 255))
     end
 

@@ -22,7 +22,7 @@ function Collision:detect(ob1, ob2, hbx, hby)
 
     col.x = ob2.x
     col.y = ob2.y
-    
+
     return col
 end
 

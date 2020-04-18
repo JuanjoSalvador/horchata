@@ -1,17 +1,17 @@
 -- Logger
 
-logger = {}
+Logger = {}
 
-function logger:info(text)
+function Logger:info(text)
     print("[INFO] " .. text)
 end
 
-function logger:debug(text)
+function Logger:debug(text)
     print("[DEBUG] " .. text)
 end
 
-function logger:error(text)
+function Logger:error(text)
     print("[ERROR] " .. text)
 end
 
-return logger
+return Logger
