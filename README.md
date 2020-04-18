@@ -7,3 +7,4 @@ A bunch of micromodules made to make easier Lua game development
 * [horchata.color](docs/color.md) helps you to manage Löve2D color system
 * [horchata.collision](docs/collision.md) provides a simply collision detector
 * [horchata.serializer](docs/serializer.md) allows you to serialize a table
+* [horchata.menu](docs/menu.md) helps you to create beautiful menus
