@@ -26,8 +26,8 @@ function Music:load(base, file)
 end
 
 --- Plays the selected track
--- @params track A track listed on tracks.txt
--- @params volume Optional, sets the volume of the play (default 50%)
+-- @param track A track listed on tracks.txt
+-- @param volume Optional, sets the volume of the play (default 50%)
 function Music:play(track, volume)
   local volume = volume or 0.5
   tracks[track]:setVolume(volume)
@@ -35,7 +35,7 @@ function Music:play(track, volume)
 end
 
 --- Stop the selected track
--- @params track A track listed on tracks.txt
+-- @param track A track listed on tracks.txt
 function Music:stop(track)
   tracks[track]:stop()
 end

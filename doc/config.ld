@@ -5,5 +5,6 @@ sort        = true
 dir         = "."
 file        = {
 		"../horchata/logger.lua",
-		"../horchata/menu.lua"
+		"../horchata/menu.lua",
+		"../horchata/music.lua"
 }

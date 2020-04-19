@@ -1,3 +1,9 @@
+--- Creates beautiful menus for your Love2D games
+---- @module horchata.menu
+---- @author Juanjo Salvador
+---- @copyright 2020
+---- @license MIT
+
 local Menu = {}
 
 local Color = require "lib.horchata.color"
