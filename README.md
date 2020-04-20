@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/JuanjoSalvador/horchata.svg?branch=dev)](https://travis-ci.org/JuanjoSalvador/horchata)
+![CI](https://github.com/JuanjoSalvador/horchata/workflows/CI/badge.svg?branch=master)
 
 # horchata
 A bunch of micromodules made to make easier Lua game development
