@@ -26,10 +26,7 @@ jobs:
 
     # Install some package
     - name: install modules
-      run: 
-        luarocks install luacheck
-        luarocks install luacov
-        luarocks install luacov-coveralls
+      run: luarocks install luacheck
         
     - name: check the code
       run: luacheck horchata 
