@@ -1,11 +1,13 @@
-local Menu = {}
+--- Creates beautiful menus for your Love2D games
+---- @module horchata.menu
+---- @author Juanjo Salvador
+---- @copyright 2020
+---- @license MIT
 
-local Color = require "lib.horchata.color"
-local Music = require 'lib.horchata.music'
+local Menu = {}
 
 local entries = {}
 local screenwidth, screenheight, percent_x, percent_y, color, sound
-local highlighted, old_highlighted  = nil
 
 --- Creates a new Menu
 -- @param gamestate The Menu GAMESTATE (example: "main_menu")
@@ -70,14 +72,14 @@ end
 function Menu:draw()
     local oldFont = love.graphics.getFont()
     local r,g,b,a = love.graphics.getColor()
-    for k, v in pairs(entries) do
+    for _, entry in pairs(entries) do
 
-        if v.m_over and v.enabled then
+        if entry.m_over and entry.enabled then
             love.graphics.setColor(self.color)
-            love.graphics.print(v.label, v.x * percent_x, v.y * percent_y)
+            love.graphics.print(entry.label, entry.x * percent_x, entry.y * percent_y)
         else
             love.graphics.setColor(r,g,b,a)
-            love.graphics.print(v.label, v.x * percent_x, v.y * percent_y)
+            love.graphics.print(entry.label, entry.x * percent_x, entry.y * percent_y)
         end
     end
 
