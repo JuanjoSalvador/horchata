@@ -9,8 +9,8 @@ local Collision = {}
 function Collision:detect(ob1, ob2, hbx, hby)
     local col = {}
 
-    local hbx = hbx or 0
-    local hby = hby or 0
+    hbx = hbx or 0
+    hby = hby or 0
 
     if ob1 ~= nil then
         if ob1.y <= ob2.y + (ob2.h - hby) and ob1.y + ob1.h >= ob2.y + hby then
