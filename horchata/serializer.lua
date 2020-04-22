@@ -8,8 +8,8 @@ function Serializer:serialize(table)
     for k, v in ipairs(table) do
         str = str .. k .. ": " .. v .. ", \r\n"
     end
-    
-    return "{ " .. str .. " }" 
+
+    return "{ " .. str .. " }"
 end
 
 return Serializer
