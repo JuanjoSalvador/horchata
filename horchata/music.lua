@@ -12,8 +12,8 @@ local tracks = {}
 -- @param base Base directory where audio files are stored, without ending slash
 -- @param file CSV file with all tracks and descriptors, should be in the base directory, default tracklist.csv
 function Music:load(base, file)
-  local base = base .. "/"
-  local file = file or base .. "/tracklist.csv"
+  base = base .. "/"
+  file = file or base .. "/tracklist.csv"
 
   for line in io.lines(file) do
     local values = {}
@@ -29,7 +29,7 @@ end
 -- @param track A track listed on tracks.txt
 -- @param volume Optional, sets the volume of the play (default 50%)
 function Music:play(track, volume)
-  local volume = volume or 0.5
+  volume = volume or 0.5
   tracks[track]:setVolume(volume)
   tracks[track]:play()
 end
