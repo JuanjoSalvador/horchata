@@ -12,21 +12,14 @@ local screenwidth, screenheight, percent_x, percent_y, color, sound
 --- Creates a new Menu
 -- @param gamestate The Menu GAMESTATE (example: "main_menu")
 -- @param color The default color for the menu entries (optional)
--- @param sound A Source object for the menu sound
-function Menu:new(gamestate, color, sound)
-    color = color or {81, 185, 141} -- default color
-
-    if sound ~= nil then
-        self.sound = sound
-    end
+function Menu:new(gamestate, color)
+    self.color = color or {81, 185, 141} -- default color
 
     screenwidth = love.graphics.getWidth()
     screenheight = love.graphics.getHeight()
     percent_x = screenwidth / 100
     percent_y = screenheight / 100
 
-    self.color = Color:RGBtoLove(color)
-    self.sound:setLooping(false)
     self.GAMESTATE = gamestate
 end
 
