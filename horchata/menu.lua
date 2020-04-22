@@ -7,13 +7,17 @@
 local Menu = {}
 
 local entries = {}
-local screenwidth, screenheight, percent_x, percent_y, color, sound
+local screenwidth, screenheight, percent_x, percent_y
+
+Menu.color = {81, 185, 141}
 
 --- Creates a new Menu
 -- @param gamestate The Menu GAMESTATE (example: "main_menu")
 -- @param color The default color for the menu entries (optional)
 function Menu:new(gamestate, color)
-    self.color = color or {81, 185, 141} -- default color
+    if color then
+        Menu.color = color -- default color
+    end
 
     screenwidth = love.graphics.getWidth()
     screenheight = love.graphics.getHeight()
@@ -68,7 +72,7 @@ function Menu:draw()
     for _, entry in pairs(entries) do
 
         if entry.m_over and entry.enabled then
-            love.graphics.setColor(self.color)
+            love.graphics.setColor(Menu.color)
             love.graphics.print(entry.label, entry.x * percent_x, entry.y * percent_y)
         else
             love.graphics.setColor(r,g,b,a)
