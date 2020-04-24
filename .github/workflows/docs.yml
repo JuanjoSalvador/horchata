@@ -17,11 +17,5 @@ jobs:
     - name: install modules
       run: luarocks install ldoc
         
-    - name: check the code
-      run: ldoc -c doc/config.ld
-        
- # auto-pull-request:
- #    runs-on: ubuntu-latest
- #    steps:
- #      - name: Pull Request Action
- #        uses: vsoch/pull-request-action@1.0.6
+    - name: build the docs
+      run: ldoc .
