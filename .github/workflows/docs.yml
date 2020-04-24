@@ -1,0 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Docs
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install LuaRocks
+        uses: leafo/gh-actions-luarocks@v2
+        with:
+          luaRocksVersion: 3.3.0
+        
+      - name: install modules
+        run: luarocks install ldoc
+        
+      - name: build the docs
+        run: ldoc -c doc/config.ld
