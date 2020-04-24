@@ -62,15 +62,6 @@ function Menu:refresh()
     percent_y = screenheight / 100
 end
 
---- Updates the Menu object's label (internal use)
-function Menu:updateLabel(action, label)
-    for k, v in pairs(entries) do
-        print(v.action, v.label)
-        if v.action == action then
-            v.label = label
-        end
-    end
-=======
 --- Updates the Menu object's label
 function Menu:updateLabel(x, y, w, h, enabled, label)
     entries[label] = {
@@ -81,7 +72,6 @@ function Menu:updateLabel(x, y, w, h, enabled, label)
         enabled = self.enabled,
         label = self.label
     }
->>>>>>> 8bc1eec655d7daa970d9299b6357f34196a78d29
 end
 
 --- Draw the Menu
