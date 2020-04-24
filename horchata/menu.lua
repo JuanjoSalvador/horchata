@@ -53,7 +53,6 @@ function Menu:update()
     end
 end
 
-<<<<<<< HEAD
 --- Refresh screen size values (if screen resizing)
 function Menu:refresh()
     screenwidth = love.graphics.getWidth()
