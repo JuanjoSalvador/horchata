@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install LuaRocks
-        uses: leafo/gh-actions-luarocks@v2
+      - uses: leafo/gh-actions-lua@v3
+      - uses: leafo/gh-actions-luarocks@v2
         with:
           luaRocksVersion: 3.3.0
         
@@ -19,3 +20,9 @@ jobs:
         
       - name: build the docs
         run: ldoc -c doc/config.ld
+        
+ # auto-pull-request:
+ #    runs-on: ubuntu-latest
+ #    steps:
+ #      - name: Pull Request Action
+ #        uses: vsoch/pull-request-action@1.0.6
