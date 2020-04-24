@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Docs
+on:
+  push:
+    branches: [ master ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: leafo/gh-actions-lua@v5
+    - uses: leafo/gh-actions-luarocks@v2
+
+    # Install some package
+    - name: install modules
+      run: luarocks install ldoc
+        
+    - name: check the code
+      run: ldoc -c doc/config.ld
+        
+ # auto-pull-request:
+ #    runs-on: ubuntu-latest
+ #    steps:
+ #      - name: Pull Request Action
+ #        uses: vsoch/pull-request-action@1.0.6
