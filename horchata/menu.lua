@@ -8,15 +8,25 @@ local Menu = {}
 
 local entries = {}
 local screenwidth, screenheight, percent_x, percent_y
+local highlighted, old_highlighted  = nil
 
-Menu.color = {81, 185, 141}
+local col = love.graphics.getWidth() / 16
+local row = love.graphics.getHeight() / 9
 
 --- Creates a new Menu
 -- @param gamestate The Menu GAMESTATE (example: "main_menu")
 -- @param color The default color for the menu entries (optional)
-function Menu:new(gamestate, color)
-    if color then
-        Menu.color = color -- default color
+-- @param sound A Source object for the menu sound
+-- @param font Font for the menu labels
+-- @param fontSize Font size for the menu labels, default 25
+-- 
+function Menu:new(gamestate, color, sound, font, fontSize)
+    self.fontSize = fontSize or 25
+    self.font = love.graphics.newFont("assets/fonts/font.ttf", fontSize)
+
+    self.color = color or {81/255, 185/255, 141/255} -- default color
+    if sound ~= nil then
+        self.sound = sound
     end
 
     screenwidth = love.graphics.getWidth()
@@ -24,7 +34,8 @@ function Menu:new(gamestate, color)
     percent_x = screenwidth / 100
     percent_y = screenheight / 100
 
-    self.GAMESTATE = gamestate
+    self.sound:setLooping(false)
+    self.gamestate = gamestate
 end
 
 --- Refresh screen size values (if screen resizing)
@@ -33,6 +44,8 @@ function Menu:refresh()
     screenheight = love.graphics.getHeight()
     percent_x = screenwidth / 100
     percent_y = screenheight / 100
+    col = screenwidth / 16
+    row = screenheight / 9
 end
 
 --- Updates the Menu object
@@ -41,14 +54,26 @@ function Menu:update()
         local mouse_x = love.mouse.getX()
         local mouse_y = love.mouse.getY()
 
-        if mouse_y >= entry.y * percent_y and mouse_y <= entry.y * percent_y + entry.h then
-            if mouse_x >= entry.x * percent_x and mouse_x <= entry.x * percent_x + entry.w then
+        if mouse_y >= entry.y * row and mouse_y <= (entry.y * row) + entry.h then
+            if mouse_x >= entry.m_x and mouse_x <= entry.m_x + entry.w then
                 entry.m_over = true
             else
                 entry.m_over = false
             end
         else
             entry.m_over = false
+        end
+    end
+
+    -- Mouse click event listener
+    function love.mousereleased(x, y, m_button)
+        if m_button == 1 then
+            for _, entry in pairs(entries) do
+                print(entry.w, entry.h)
+                if entry.m_over and entry.enabled and GAMESTATE == Menu.gamestate then
+                    entry:func()
+                end
+            end
         end
     end
 end
@@ -67,53 +92,46 @@ end
 
 --- Draw the Menu
 function Menu:draw()
-    local oldFont = love.graphics.getFont()
+    love.graphics.setFont(font)
     local r,g,b,a = love.graphics.getColor()
-    for _, entry in pairs(entries) do
 
-        if entry.m_over and entry.enabled then
-            love.graphics.setColor(Menu.color)
-            love.graphics.print(entry.label, entry.x * percent_x, entry.y * percent_y)
+    for k, v in pairs(entries) do
+        local center = (love.graphics.getWidth() / 2) - (v.w / 2)
+
+        if v.m_over and v.enabled then
+            love.graphics.setColor(self.color)
+            love.graphics.print(v.label, center, row * v.y)
         else
             love.graphics.setColor(r,g,b,a)
-            love.graphics.print(entry.label, entry.x * percent_x, entry.y * percent_y)
+            love.graphics.print(v.label, center, row * v.y)
         end
     end
 
-    love.graphics.setFont(oldFont)
     love.graphics.setColor(r,g,b,a)
 end
 
 --- Add a new Entry to the Menu
--- @param x The X position of the entry
--- @param y The Y position of the entry
--- @param w The width of the entry
--- @param h The height of the entry
+-- @param x The column (X coord) of the entry (0-16),  mandatory
+-- @param y The row (Y coord) of the entry (0-9),  mandatory
 -- @param enabled An Entry object can be enabled or not
--- @param label The Entry label
+-- @param label The Entry label, mandatory
 -- @param func The Entry function (whatever the function does)
-function Menu:addEntry(x, y, w, h, enabled, label, func)
+function Menu:addEntry(x, y, enabled, label, func)
+    assert(x, "Column must be defined")
+    assert(y, "Row must be defined")
+    assert(label, "Label must be defined")
     entries[label] = {
         x = x,
         y = y,
-        w = w,
-        h = h,
-        enabled = enabled,
+        w = font:getWidth(label),
+        h = font:getHeight(label),
+        enabled = enabled or false,
         label = label,
         func = func,
-        m_over = false
+        m_over = false,
+        m_x = (love.graphics.getWidth() / 2) - (font:getWidth(label) / 2),
+        m_y = y * row
     }
-end
-
--- Mouse click event listener
-function love.mousereleased(x, y, m_button)
-    if m_button == 1 then
-        for _, entry in pairs(entries) do
-            if entry.m_over and entry.enabled and GAMESTATE == Menu.GAMESTATE then
-                entry:func()
-            end
-        end
-    end
 end
 
 return Menu
