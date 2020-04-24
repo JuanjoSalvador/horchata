@@ -1,10 +1,19 @@
-[![Build Status](https://travis-ci.org/JuanjoSalvador/horchata.svg?branch=dev)](https://travis-ci.org/JuanjoSalvador/horchata)
+![CI](https://github.com/JuanjoSalvador/horchata/workflows/CI/badge.svg?branch=master)
 
 # horchata
 A bunch of micromodules made to make easier Lua game development
 
-* [horchata.logger](docs/logger.md) makes easier to log your game
-* [horchata.color](docs/color.md) helps you to manage Löve2D color system
-* [horchata.collision](docs/collision.md) provides a simply collision detector
-* [horchata.serializer](docs/serializer.md) allows you to serialize a table
-* [horchata.menu](docs/menu.md) helps you to create beautiful menus
+* horchata.collision provides a simply collision detector
+* horchata.color helps you to manage Löve2D color system
+* horchata.logger makes easier to log your game
+* horchata.menu] helps you to create beautiful menus
+* horchata.music manage music by the simple way
+* horchata.serializer allows you to serialize a table
+
+## Docs
+
+Documentation is generated with `ldoc`, so you can generate your own. If you want a hosted version, current docs are [available here](https://jsalvador.me/horchata).
+
+## License
+
+Horchata is MIT license.

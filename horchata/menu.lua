@@ -78,6 +78,14 @@ function Menu:update()
     end
 end
 
+--- Refresh screen size values (if screen resizing)
+function Menu:refresh()
+    screenwidth = love.graphics.getWidth()
+    screenheight = love.graphics.getHeight()
+    percent_x = screenwidth / 100
+    percent_y = screenheight / 100
+end
+
 --- Updates the Menu object's label
 function Menu:updateLabel(x, y, w, h, enabled, label)
     entries[label] = {

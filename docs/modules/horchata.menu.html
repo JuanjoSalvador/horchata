@@ -60,7 +60,7 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Menu:addEntry">Menu:addEntry (x, y, w, h, clickable, onClick, text)</a></td>
+	<td class="name" nowrap><a href="#Menu:addEntry">Menu:addEntry (x, y, w, h, enabled, label, func)</a></td>
 	<td class="summary">Add a new Entry to the Menu</td>
 	</tr>
 	<tr>
@@ -68,16 +68,26 @@
 	<td class="summary">Draw the Menu</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Menu:new">Menu:new (gamestate, color, sound)</a></td>
+	<td class="name" nowrap><a href="#Menu:new">Menu:new (gamestate, color)</a></td>
 	<td class="summary">Creates a new Menu</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Menu:refresh">Menu:refresh ()</a></td>
+	<td class="summary">Refresh screen size values (if screen resizing)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Menu:refresh">Menu:refresh ()</a></td>
+	<td class="summary">Refresh screen size values (if screen resizing)</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Menu:update">Menu:update ()</a></td>
 	<td class="summary">Updates the Menu object</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Menu:updateLabel">Menu:updateLabel (action, label)</a></td>
-	<td class="summary">Updates the Menu object's label (internal use)</td>
+
+
+	<td class="name" nowrap><a href="#Menu:updateLabel">Menu:updateLabel (x, y, w, h, enabled, label)</a></td>
+	<td class="summary">Updates the Menu object's label</td>
 	</tr>
 </table>
 
@@ -90,7 +100,7 @@
     <dl class="function">
     <dt>
     <a name = "Menu:addEntry"></a>
-    <strong>Menu:addEntry (x, y, w, h, clickable, onClick, text)</strong>
+    <strong>Menu:addEntry (x, y, w, h, enabled, label, func)</strong>
     </dt>
     <dd>
     Add a new Entry to the Menu
@@ -99,25 +109,25 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">x</span>
-         number The X position of the entry
+         The X position of the entry
         </li>
         <li><span class="parameter">y</span>
-         number The Y position of the entry
+         The Y position of the entry
         </li>
         <li><span class="parameter">w</span>
-         number The width of the entry
+         The width of the entry
         </li>
         <li><span class="parameter">h</span>
-         number The height of the entry
+         The height of the entry
         </li>
-        <li><span class="parameter">clickable</span>
-         bool An Entry object could be clickable or not
+        <li><span class="parameter">enabled</span>
+         An Entry object can be enabled or not
         </li>
-        <li><span class="parameter">onClick</span>
-         string Action to launch when you click this (default nil)
+        <li><span class="parameter">label</span>
+         The Entry label
         </li>
-        <li><span class="parameter">text</span>
-         string The Entry label
+        <li><span class="parameter">func</span>
+         The Entry function (whatever the function does)
         </li>
     </ul>
 
@@ -142,7 +152,7 @@
 </dd>
     <dt>
     <a name = "Menu:new"></a>
-    <strong>Menu:new (gamestate, color, sound)</strong>
+    <strong>Menu:new (gamestate, color)</strong>
     </dt>
     <dd>
     Creates a new Menu
@@ -167,11 +177,18 @@
 
 </dd>
     <dt>
-    <a name = "Menu:update"></a>
-    <strong>Menu:update ()</strong>
+    <a name = "Menu:refresh"></a>
+    <strong>Menu:refresh ()</strong>
     </dt>
     <dd>
-    Updates the Menu object
+    Refresh screen size values (if screen resizing)
+</dd>
+    <dt>
+    <a name = "Menu:refresh"></a>
+    <strong>Menu:refresh ()</strong>
+    </dt>
+    <dd>
+    Refresh screen size values (if screen resizing)
 
 
 
@@ -181,17 +198,36 @@
 
 </dd>
     <dt>
-    <a name = "Menu:updateLabel"></a>
-    <strong>Menu:updateLabel (action, label)</strong>
+    <a name = "Menu:update"></a>
+    <strong>Menu:update ()</strong>
     </dt>
     <dd>
-    Updates the Menu object's label (internal use)
+    Updates the Menu object
+</dd>
+    <dt>
+    <a name = "Menu:updateLabel"></a>
+    <strong>Menu:updateLabel (x, y, w, h, enabled, label)</strong>
+    </dt>
+    <dd>
+    Updates the Menu object's label
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">action</span>
+        <li><span class="parameter">x</span>
 
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+        <li><span class="parameter">w</span>
+
+        </li>
+        <li><span class="parameter">h</span>
+
+        </li>
+        <li><span class="parameter">enabled</span>
+          
         </li>
         <li><span class="parameter">label</span>
 
