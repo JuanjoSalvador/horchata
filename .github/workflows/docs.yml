@@ -4,22 +4,21 @@ name: Docs
 on:
   push:
     branches: [ master ]
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install LuaRocks
-      - uses: leafo/gh-actions-lua@v3
-      - uses: leafo/gh-actions-luarocks@v2
-        with:
-          luaRocksVersion: 3.3.0
+    - uses: actions/checkout@v2
+    - uses: leafo/gh-actions-lua@v5
+    - uses: leafo/gh-actions-luarocks@v2
+
+    # Install some package
+    - name: install modules
+      run: luarocks install ldoc
         
-      - name: install modules
-        run: luarocks install ldoc
-        
-      - name: build the docs
-        run: ldoc -c doc/config.ld
+    - name: check the code
+      run: ldoc -c doc/config.ld
         
  # auto-pull-request:
  #    runs-on: ubuntu-latest
