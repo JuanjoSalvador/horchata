@@ -19,10 +19,8 @@ local row = love.graphics.getHeight() / 9
 -- @param sound A Source object for the menu sound
 -- @param font Font for the menu labels
 -- @param fontSize Font size for the menu labels, default 25
--- 
-function Menu:new(gamestate, color, sound, font, fontSize)
-    self.fontSize = fontSize or 25
-    self.font = love.graphics.newFont("assets/fonts/font.ttf", fontSize)
+function Menu:new(gamestate, color, sound, font)
+    self.font = font
 
     self.color = color or {81/255, 185/255, 141/255} -- default color
     if sound ~= nil then
@@ -100,7 +98,7 @@ end
 
 --- Draw the Menu
 function Menu:draw()
-    love.graphics.setFont(font)
+    love.graphics.setFont(self.font)
     local r,g,b,a = love.graphics.getColor()
 
     for k, v in pairs(entries) do
@@ -131,13 +129,13 @@ function Menu:addEntry(x, y, enabled, label, func)
     entries[label] = {
         x = x,
         y = y,
-        w = font:getWidth(label),
-        h = font:getHeight(label),
+        w = self.font:getWidth(label),
+        h = self.font:getHeight(label),
         enabled = enabled or false,
         label = label,
         func = func,
         m_over = false,
-        m_x = (love.graphics.getWidth() / 2) - (font:getWidth(label) / 2),
+        m_x = (love.graphics.getWidth() / 2) - (self.font:getWidth(label) / 2),
         m_y = y * row
     }
 end
