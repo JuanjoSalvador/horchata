@@ -43,7 +43,7 @@ function Menu:refresh()
     percent_y = screenheight / 100
     col = screenwidth / 16
     row = screenheight / 9
-    
+
     -- Updates the entry X position
     for _, entry in pairs(entries) do
         entry.m_x = (screenwidth / 2) - (self.font:getWidth(entry.label) / 2)
