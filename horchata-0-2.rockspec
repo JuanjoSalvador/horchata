@@ -1,8 +1,8 @@
 package = "horchata"
-version = "0-1"
+version = "0-2"
 source = {
    url = "git+https://github.com/JuanjoSalvador/horchata.git",
-   tag = "0.1"
+   tag = "0.2"
 }
 description = {
    summary = "horchata, a bunch of micromodules made to make easier Lua game development",
