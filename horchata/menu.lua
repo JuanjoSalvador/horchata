@@ -46,7 +46,7 @@ function Menu:refresh()
     
     -- Updates the entry X position
     for _, entry in pairs(entries) do
-        entry.m_x = (screenwidth / 2) - (font:getWidth(entry.label) / 2)
+        entry.m_x = (screenwidth / 2) - (self.font:getWidth(entry.label) / 2)
     end
 end
 
